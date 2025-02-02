@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: name.panitz.game2d.flappypanitz.FlappyPanitz
+Class-Path: json-20250107.jar
+
