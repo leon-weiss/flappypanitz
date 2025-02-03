@@ -53,6 +53,9 @@ public class FlappyPanitz {
         FlappyGame game = new FlappyGame(selectedCharacter);
         SwingScreen gameScreen = new SwingScreen(game);
 
+        f.setIgnoreRepaint(true);
+        f.createBufferStrategy(3);
+
         f.setContentPane(gameScreen);
         f.revalidate();
         f.repaint();

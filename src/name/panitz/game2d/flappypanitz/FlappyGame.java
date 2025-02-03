@@ -51,6 +51,8 @@ public class FlappyGame implements Game {
     private boolean scoreSubmitted = false;
 
     private final FontLoader fontLoader = new FontLoader();
+    Font pixel24PxFont = fontLoader.loadFont("pixel", "Poxast", "Arial", 24);
+    Font pixel48PxFont = fontLoader.loadFont("pixel", "Poxast", "Arial", 48);
 
     public FlappyGame(Character selectedCharacter) {
         this.selectedCharacter = selectedCharacter;
@@ -59,6 +61,7 @@ public class FlappyGame implements Game {
 
     @Override
     public void init() {
+
         player = new Player(100, GAME_HEIGHT / 2, 40, 40, GRAVITY, selectedCharacter);
         pipes = new ArrayList<>();
         lost = false;
@@ -68,7 +71,7 @@ public class FlappyGame implements Game {
         gameOverSoundPlayed = false;
         scoreSubmitted = false;
 
-//        SoundPlayer.playBackgroundMusic("/assets/audio/background.wav");
+        SoundPlayer.playBackgroundMusic("/assets/audio/background.wav");
     }
 
     @Override
@@ -119,9 +122,9 @@ public class FlappyGame implements Game {
         }
 
         if (lost && !gameOverSoundPlayed) {
-//            SoundPlayer.playSoundEffect("/assets/audio/gameover.wav");
+            SoundPlayer.playSoundEffect("/assets/audio/gameover.wav");
             gameOverSoundPlayed = true;
-//            SoundPlayer.stopBackgroundMusic();
+            SoundPlayer.stopBackgroundMusic();
 
             if (highScores == null) {
                 fetchHighScores();
@@ -144,7 +147,7 @@ public class FlappyGame implements Game {
         }
         if (keyEvent.getKeyCode() == KeyEvent.VK_SPACE) {
             player.flap(FLAP_STRENGTH);
-//            SoundPlayer.playSoundEffect("/assets/audio/jump.wav");
+            SoundPlayer.playSoundEffect("/assets/audio/jump.wav");
         }
     }
 
@@ -188,17 +191,16 @@ public class FlappyGame implements Game {
         Game.super.paintTo(g);
 
         g.setColor(Color.BLACK);
-        Font pixel24PxFont = fontLoader.loadFont("pixel", "Poxast", "Arial", 24);
+
         g.setFont(pixel24PxFont);
         g.drawString("Score: " + score, 10, 30);
         if (lost) {
-            g.setFont(fontLoader.loadFont("pixel", "Poxast", "Arial", 48));
+            g.setFont(pixel48PxFont);
             g.drawString("Game Over", GAME_WIDTH / 2 - 200, GAME_HEIGHT / 2 - 300);
 
             g.setFont(pixel24PxFont);
             g.drawString("ENTER zum Neustarten", GAME_WIDTH / 2 - 250, GAME_HEIGHT / 2 - 250);
 
-            g.setFont(fontLoader.loadFont("pixel", "Poxast", "Arial", 24));
             int tableX = GAME_WIDTH / 2 - 250;
             int tableY = GAME_HEIGHT / 2 - 150;
             g.drawString("Highscores:", tableX, tableY);
