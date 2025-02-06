@@ -8,6 +8,8 @@ public class SoundPlayer {
 
     private static Clip backgroundClip;
 
+    private static Clip jumpClip;
+
     public static void playBackgroundMusic(String filePath) {
         try {
             AudioInputStream din = AudioSystem.getAudioInputStream(Objects.requireNonNull(SoundPlayer.class.getResource(filePath)));
@@ -22,6 +24,25 @@ public class SoundPlayer {
     public static void stopBackgroundMusic() {
         if (backgroundClip != null && backgroundClip.isRunning()) {
             backgroundClip.stop();
+        }
+    }
+
+    public static void playJumpSoundEffect() {
+        try {
+            if(jumpClip != null) {
+                jumpClip.stop();
+                jumpClip.setMicrosecondPosition(0);
+                jumpClip.start();
+                return;
+            }
+            AudioInputStream din = AudioSystem.getAudioInputStream(Objects.requireNonNull(SoundPlayer.class.getResource("/assets/audio/jump.wav")));
+            jumpClip = AudioSystem.getClip();
+            jumpClip.open(din);
+            jumpClip.start();
+
+            System.out.println(System.getProperties());
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            System.err.println(e.getMessage());
         }
     }
 

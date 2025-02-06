@@ -147,7 +147,8 @@ public class FlappyGame implements Game {
         }
         if (keyEvent.getKeyCode() == KeyEvent.VK_SPACE) {
             player.flap(FLAP_STRENGTH);
-            SoundPlayer.playSoundEffect("/assets/audio/jump.wav");
+//            SoundPlayer.playSoundEffect("/assets/audio/jump.wav");
+            SoundPlayer.playJumpSoundEffect();
         }
     }
 
