@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class FontLoader {
 
+    // Diese Methode wurde mithilfe von StackOverflow entwickelt
     public Font loadFont(String file, String fontName, String fallback, int size) {
         try {
             GraphicsEnvironment ge =

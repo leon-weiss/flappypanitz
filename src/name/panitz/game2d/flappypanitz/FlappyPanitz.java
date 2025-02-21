@@ -13,14 +13,14 @@ public class FlappyPanitz {
     public static void main(String[] args) {
         int uploadOption = JOptionPane.showConfirmDialog(
                 null,
-                "Möchten Sie Ihre Spieldaten hochladen?",
+                "Möchtest du deine Spieldaten hochladen? \nBitte beachte die Datenschutzerklärung unter https://flappypanitz.de/datenschutz.php ",
                 "Daten hochladen",
                 JOptionPane.YES_NO_OPTION);
 
         if (uploadOption == JOptionPane.YES_OPTION) {
             String input = JOptionPane.showInputDialog(
                     null,
-                    "Bitte geben Sie Ihren Spielernamen ein:",
+                    "Bitte gib dir einen Spielernamen:",
                     "Spielername",
                     JOptionPane.PLAIN_MESSAGE);
             if (input != null && !input.trim().isEmpty()) {

@@ -76,6 +76,7 @@ public class StartScreen extends JPanel {
 
 
 
+    // Diese Methoden wurde von StackOverflow kopiert
     /**
      * Draw a String centered in the middle of a Rectangle.
      *

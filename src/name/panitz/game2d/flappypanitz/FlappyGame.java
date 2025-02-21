@@ -122,7 +122,7 @@ public class FlappyGame implements Game {
         }
 
         if (lost && !gameOverSoundPlayed) {
-            SoundPlayer.playSoundEffect("/assets/audio/gameover.wav");
+            SoundPlayer.playGameOverSoundEffect();
             gameOverSoundPlayed = true;
             SoundPlayer.stopBackgroundMusic();
 
@@ -147,7 +147,6 @@ public class FlappyGame implements Game {
         }
         if (keyEvent.getKeyCode() == KeyEvent.VK_SPACE) {
             player.flap(FLAP_STRENGTH);
-//            SoundPlayer.playSoundEffect("/assets/audio/jump.wav");
             SoundPlayer.playJumpSoundEffect();
         }
     }
@@ -223,6 +222,7 @@ public class FlappyGame implements Game {
         }
     }
 
+    // Für diese Methoden wurde Hilfe von StackOverflow verwendet
     private void fetchHighScores() {
         new Thread(() -> {
             try {

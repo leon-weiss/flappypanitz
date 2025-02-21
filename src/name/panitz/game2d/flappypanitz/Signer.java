@@ -33,6 +33,7 @@ public class Signer {
         return kf.generatePrivate(spec);
     }
 
+    // Diese Methode wurde mithilfe von StackOverflow entwickelt
     public static String signData(String data, PrivateKey key) throws Exception {
         Signature signature = Signature.getInstance("SHA256withRSA");
         signature.initSign(key);

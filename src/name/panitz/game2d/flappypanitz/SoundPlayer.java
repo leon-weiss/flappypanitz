@@ -4,11 +4,12 @@ import javax.sound.sampled.*;
 import java.io.IOException;
 import java.util.Objects;
 
+// Die Methoden in dieser Klasse wurden teilweise mithilfe von StackOverflow entwickelt
 public class SoundPlayer {
 
     private static Clip backgroundClip;
-
     private static Clip jumpClip;
+    private static Clip gameOverClip;
 
     public static void playBackgroundMusic(String filePath) {
         try {
@@ -39,8 +40,6 @@ public class SoundPlayer {
             jumpClip = AudioSystem.getClip();
             jumpClip.open(din);
             jumpClip.start();
-
-            System.out.println(System.getProperties());
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             System.err.println(e.getMessage());
         }
@@ -52,6 +51,23 @@ public class SoundPlayer {
             Clip clip = AudioSystem.getClip();
             clip.open(din);
             clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public static void playGameOverSoundEffect() {
+        try {
+            if(gameOverClip != null) {
+                gameOverClip.stop();
+                gameOverClip.setMicrosecondPosition(0);
+                gameOverClip.start();
+                return;
+            }
+            AudioInputStream din = AudioSystem.getAudioInputStream(Objects.requireNonNull(SoundPlayer.class.getResource("/assets/audio/gameover.wav")));
+            gameOverClip = AudioSystem.getClip();
+            gameOverClip.open(din);
+            gameOverClip.start();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             System.err.println(e.getMessage());
         }
